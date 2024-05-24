@@ -1,27 +1,49 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Teste </ion-title>
+    <ion-title> Home </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">teste</ion-title>
+      <ion-title size="large">Home</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-list>
-    @for (pokemon of pokemons; track pokemon.id) {
-    <ion-avatar>
-      <img [src]="pokemon.image" alt="" />
-    </ion-avatar>
-    <ion-item>
-      <ion-label>{{ pokemon.item.name }}</ion-label>
-      <ion-button [routerLink]="['/details', pokemon.item.name]"
-        >Mais informações</ion-button
-      >
-    </ion-item>
-    }
-  </ion-list>
+  <ion-grid>
+    <ion-row class="content-wrapper ion-justify-content-center">
+      @for (pokemon of pokemons; track pokemon.id) {
+      <ion-col size="12" size-sm="6" size-lg="4" size-xl="3">
+        <ion-card>
+          <ion-card-content>
+            <ion-thumbnail [routerLink]="['/details', pokemon.item.name]">
+              <img alt="pokemon.item.name Avatar" [src]="pokemon.image" />
+            </ion-thumbnail>
+            <ion-item lines="none">
+              <ion-card-title class="ion-text-capitalize">
+                {{ pokemon.item.name }}
+              </ion-card-title>
+              <ion-button
+                color="none"
+                slot="end"
+                size="large"
+                class="ion-no-padding"
+              >
+                <ion-icon
+                  name="heart"
+                  aria-hidden="true"
+                  color="danger"
+                ></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      }
+      <ion-button shape="round" color="danger" (click)="loadMore()">
+        Load More
+      </ion-button>
+    </ion-row>
+  </ion-grid>
 </ion-content>

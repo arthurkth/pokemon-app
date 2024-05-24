@@ -7,6 +7,14 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardContent,
+  IonItem,
+  IonLabel,
+  IonList,
 } from '@ionic/angular/standalone';
 import { PokeapiService } from '../services/pokeapi.service';
 
@@ -22,16 +30,24 @@ import { PokeapiService } from '../services/pokeapi.service';
     IonToolbar,
     CommonModule,
     FormsModule,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCardContent,
+    IonItem,
+    IonLabel,
+    IonList,
   ],
 })
 export class DetailsPage {
-  pokemonInfo: any = [];
+  pokemonInfo: any = {};
 
   @Input()
   set name(pokemonName: string) {
     this.pokeApiService.getPokemonDetails(pokemonName).subscribe((pokemon) => {
+      this.pokemonInfo = pokemon;
       console.log(pokemon);
-      this.pokemonInfo.push(pokemon);
     });
   }
   constructor(private pokeApiService: PokeapiService) {}

@@ -25,3 +25,20 @@
 #container a {
   text-decoration: none;
 }
+
+ion-thumbnail {
+  --size: 100%;
+}
+
+ion-button {
+  --box-shadow: none;
+}
+
+.content-wrapper {
+  margin: 0 auto;
+}
+@media (min-width: 1440px) {
+  .content-wrapper {
+    width: 60%;
+  }
+}
