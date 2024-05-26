@@ -15,6 +15,8 @@ import {
   IonItem,
   IonLabel,
   IonList,
+  IonRow,
+  IonCol,
 } from '@ionic/angular/standalone';
 import { PokeapiService } from '../services/pokeapi.service';
 
@@ -38,6 +40,8 @@ import { PokeapiService } from '../services/pokeapi.service';
     IonItem,
     IonLabel,
     IonList,
+    IonRow,
+    IonCol,
   ],
 })
 export class DetailsPage {

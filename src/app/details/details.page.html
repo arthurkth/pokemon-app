@@ -6,42 +6,77 @@
 
 <ion-content [fullscreen]="true">
   @if(pokemonInfo && pokemonInfo.sprites && pokemonInfo.sprites.other) {
-  <ion-card>
-    <img
-      alt="Silhouette of mountains"
-      [src]=" pokemonInfo.sprites.other['official-artwork'].front_default"
-    />
-    <ion-card-header>
-      <ion-card-title>{{ pokemonInfo.name}}</ion-card-title>
-      <ion-card-subtitle></ion-card-subtitle>
-    </ion-card-header>
+  <ion-row
+    class="ion-justify-content-center ion-align-items-center content-wrapper"
+  >
+    <ion-col size="12" size-md="8" size-lg="6" class="pokemon-card__stats">
+      <ion-card>
+        <img
+          alt="Silhouette of mountains"
+          [src]=" pokemonInfo.sprites.other['official-artwork'].front_default"
+        />
+        <ion-card-header>
+          <ion-card-title class="ion-text-capitalize ion-text-center"
+            >{{ pokemonInfo.name}}</ion-card-title
+          >
+        </ion-card-header>
+        <ion-card-content>
+          <ion-title>Stats:</ion-title>
+          <ion-list>
+            @for (item of pokemonInfo.stats; track pokemonInfo.id) {
+            <ion-item class="ion-text-center">
+              <ion-label>{{ item.stat.name}} : </ion-label>
+              <ion-label>{{ item.base_stat}} </ion-label>
+            </ion-item>
+            }
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" size-md="8" size-lg="6" class="pokemon-card">
+      <ion-card>
+        <ion-card-content>
+          <ion-list>
+            <ion-item lines="none" class="ion-text-center pokemon-card__title">
+              <ion-label> Height: </ion-label>
+            </ion-item>
+            <ion-item lines="none" class="ion-text-center pokemon-card__data">
+              <ion-label>{{ pokemonInfo.height}}</ion-label>
+            </ion-item>
+            <ion-item lines="none" class="ion-text-center pokemon-card__title">
+              <ion-label> Weight:</ion-label>
+            </ion-item>
+            <ion-item lines="none" class="ion-text-center pokemon-card__data">
+              <ion-label> {{ pokemonInfo.weight}}</ion-label>
+            </ion-item>
+            <ion-item lines="none" class="ion-text-center pokemon-card__title">
+              <ion-label class="ion-text-center"> Abilities: </ion-label>
+            </ion-item>
+            <ion-item lines="none" class="ion-text-center pokemon-card__data">
+              @for (ability of pokemonInfo.abilities; track pokemonInfo.id){
+              <ion-label class="ion-text-capitalize">
+                {{ ability.ability.name}}
+              </ion-label>
+              }
+            </ion-item>
+            <ion-item lines="none" class="ion-text-center pokemon-card__title">
+              <ion-label class="ion-text-center"> Type: </ion-label>
+            </ion-item>
+            <ion-item lines="none" class="ion-text-center">
+              @for (type of pokemonInfo.types; track pokemonInfo.id){
+              <ion-label
+                class="ion-margin ion-text-capitalize pokemon-card__type"
+              >
+                {{ type.type.name}}
+              </ion-label>
+              }
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 
-    <ion-card-content>
-      <ion-item>
-        <ion-label> Height: {{ pokemonInfo.height}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label> Weight: {{ pokemonInfo.weight}}</ion-label>
-      </ion-item>
-      <ion-list>
-        <ion-label> Type: </ion-label>
-        @for (type of pokemonInfo.types; track pokemonInfo.id){
-        <ion-item>
-          <ion-label> {{ type.type.name}} </ion-label>
-        </ion-item>
-        }
-      </ion-list>
-      <ion-list>
-        <ion-label>Stats:</ion-label>
-        @for (item of pokemonInfo.stats; track pokemonInfo.id) {
-        <ion-item>
-          <ion-label>{{ item.stat.name}} : </ion-label>
-          <ion-label>{{ item.base_stat}} </ion-label>
-        </ion-item>
-        }
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
   } @else {
   <p>Loading...</p>
   }
