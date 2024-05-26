@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Input } from '@angular/core';
+import { addIcons } from 'ionicons';
+import { heart } from 'ionicons/icons';
+import { arrowUndoCircleOutline } from 'ionicons/icons';
+import { RouterModule } from '@angular/router';
 import {
   IonContent,
   IonHeader,
@@ -17,6 +21,8 @@ import {
   IonList,
   IonRow,
   IonCol,
+  IonButton,
+  IonIcon,
 } from '@ionic/angular/standalone';
 import { PokeapiService } from '../services/pokeapi.service';
 
@@ -26,6 +32,7 @@ import { PokeapiService } from '../services/pokeapi.service';
   styleUrls: ['./details.page.scss'],
   standalone: true,
   imports: [
+    RouterModule,
     IonContent,
     IonHeader,
     IonTitle,
@@ -42,6 +49,8 @@ import { PokeapiService } from '../services/pokeapi.service';
     IonList,
     IonRow,
     IonCol,
+    IonButton,
+    IonIcon,
   ],
 })
 export class DetailsPage {
@@ -54,5 +63,7 @@ export class DetailsPage {
       console.log(pokemon);
     });
   }
-  constructor(private pokeApiService: PokeapiService) {}
+  constructor(private pokeApiService: PokeapiService) {
+    addIcons({ heart, arrowUndoCircleOutline });
+  }
 }

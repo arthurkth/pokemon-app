@@ -5,14 +5,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-button [routerLink]="['/']" class="arrow-back__button ion-no-padding"
+    ><ion-icon name="arrow-undo-circle-outline"></ion-icon>
+  </ion-button>
   @if(pokemonInfo && pokemonInfo.sprites && pokemonInfo.sprites.other) {
-  <ion-row
-    class="ion-justify-content-center ion-align-items-center content-wrapper"
-  >
+  <ion-row class="ion-justify-content-center content-wrapper">
     <ion-col size="12" size-md="8" size-lg="6" class="pokemon-card__stats">
       <ion-card>
         <img
-          alt="Silhouette of mountains"
+          alt="pokemonInfo.name"
           [src]=" pokemonInfo.sprites.other['official-artwork'].front_default"
         />
         <ion-card-header>
@@ -21,6 +22,14 @@
           >
         </ion-card-header>
         <ion-card-content>
+          <ion-button
+            color="dark"
+            slot="end"
+            class="ion-margin-bottom ion-text-capitalize"
+          >
+            Favorite
+            <ion-icon name="heart" aria-hidden="true" color="danger"></ion-icon>
+          </ion-button>
           <ion-title>Stats:</ion-title>
           <ion-list>
             @for (item of pokemonInfo.stats; track pokemonInfo.id) {
@@ -33,33 +42,48 @@
         </ion-card-content>
       </ion-card>
     </ion-col>
+
     <ion-col size="12" size-md="8" size-lg="6" class="pokemon-card">
       <ion-card>
         <ion-card-content>
-          <ion-list>
-            <ion-item lines="none" class="ion-text-center pokemon-card__title">
-              <ion-label> Height: </ion-label>
+          <ion-list class="pokemon-card__info">
+            <ion-item lines="none" class="ion-text-center">
+              <ion-label class="pokemon-card__title"> Height: </ion-label>
             </ion-item>
-            <ion-item lines="none" class="ion-text-center pokemon-card__data">
-              <ion-label>{{ pokemonInfo.height}}</ion-label>
+            <ion-item lines="none" class="ion-text-center">
+              <ion-label class="pokemon-card__value"
+                >{{ pokemonInfo.height}}</ion-label
+              >
             </ion-item>
-            <ion-item lines="none" class="ion-text-center pokemon-card__title">
-              <ion-label> Weight:</ion-label>
+            <ion-item lines="none" class="ion-text-center">
+              <ion-label class="pokemon-card__title"> Weight:</ion-label>
             </ion-item>
-            <ion-item lines="none" class="ion-text-center pokemon-card__data">
-              <ion-label> {{ pokemonInfo.weight}}</ion-label>
+            <ion-item lines="none" class="ion-text-center">
+              <ion-label class="pokemon-card__value">
+                {{ pokemonInfo.weight}}</ion-label
+              >
             </ion-item>
             <ion-item lines="none" class="ion-text-center pokemon-card__title">
               <ion-label class="ion-text-center"> Abilities: </ion-label>
             </ion-item>
-            <ion-item lines="none" class="ion-text-center pokemon-card__data">
+            <ion-list class="pokemon-card__ability__container">
               @for (ability of pokemonInfo.abilities; track pokemonInfo.id){
-              <ion-label class="ion-text-capitalize">
-                {{ ability.ability.name}}
-              </ion-label>
+              <ion-item
+                lines="none"
+                class="ion-text-center pokemon-card__ability"
+                color="none"
+              >
+                <ion-label
+                  class="ion-text-capitalize pokemon-card__ability__name"
+                >
+                  {{ ability.ability.name}}
+                </ion-label>
+              </ion-item>
               }
-            </ion-item>
-            <ion-item lines="none" class="ion-text-center pokemon-card__title">
+            </ion-list>
+          </ion-list>
+          <ion-list>
+            <ion-item lines="none" class="ion-text-center">
               <ion-label class="ion-text-center"> Type: </ion-label>
             </ion-item>
             <ion-item lines="none" class="ion-text-center">
