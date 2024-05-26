@@ -69,7 +69,6 @@ export class HomePage {
     this.pokeapiService
       .getPokemonList(this.limit, this.offset)
       .subscribe((data) => {
-        console.log(data);
         const newPokemons = data.map((pokemon: PokemonBaseInfo): Pokemon => {
           const parts = pokemon.url.split('/');
           const id = parseInt(parts[parts.length - 2], 10);

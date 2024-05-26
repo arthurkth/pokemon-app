@@ -20,9 +20,17 @@
             color="dark"
             slot="end"
             class="ion-margin-bottom ion-text-capitalize"
+            (click)="addToFavorite()"
           >
-            Favorite
+            Favorite @if (isFavorite) {
             <ion-icon name="heart" aria-hidden="true" color="danger"></ion-icon>
+            } @else {
+            <ion-icon
+              name="heart-outline"
+              aria-hidden="true"
+              color="danger"
+            ></ion-icon>
+            }
           </ion-button>
           <ion-title>Stats:</ion-title>
           <ion-list>

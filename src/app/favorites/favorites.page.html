@@ -1,11 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Favorites</ion-title>
+    <ion-title> Favorites </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-header collapse="condense">
-    <ion-toolbar> </ion-toolbar>
+    <ion-toolbar>
+      <ion-title size="large">Favorites</ion-title>
+    </ion-toolbar>
   </ion-header>
+
+  @if (favorites) {
+  <ion-grid>
+    <ion-row class="content-wrapper ion-justify-content-center">
+      @for (pokemon of favorites; track pokemon.id) {
+      <ion-col size="12" size-sm="6" size-lg="4" size-xl="3">
+        <ion-card>
+          <ion-card-content>
+            <ion-thumbnail [routerLink]="['/details', pokemon.name]">
+              <img alt="pokemon.name Avatar" [src]="pokemon.sprites" />
+            </ion-thumbnail>
+            <ion-item lines="none">
+              <ion-card-title class="ion-text-capitalize">
+                {{ pokemon.name }}
+              </ion-card-title>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      }
+      <!-- <ion-button shape="round" color="danger" (click)="loadMore()">
+        Load More
+      </ion-button> -->
+    </ion-row>
+  </ion-grid>
+  } @else {
+  <div>Nada há resultados encontrados.</div>
+  }
 </ion-content>

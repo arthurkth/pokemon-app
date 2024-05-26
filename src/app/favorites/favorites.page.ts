@@ -1,13 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import {
   IonContent,
   IonHeader,
   IonTitle,
   IonToolbar,
+  IonGrid,
+  IonCol,
+  IonRow,
+  IonCard,
+  IonCardContent,
+  IonCardTitle,
+  IonThumbnail,
+  IonButton,
+  IonItem,
 } from '@ionic/angular/standalone';
-
+import { FavoritesService } from '../services/favorites.service';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
@@ -20,11 +30,25 @@ import {
     IonToolbar,
     CommonModule,
     FormsModule,
+    IonGrid,
+    IonCol,
+    IonRow,
+    IonCard,
+    IonCardContent,
+    IonThumbnail,
+    IonItem,
+    IonCardTitle,
+    IonButton,
+    RouterModule,
   ],
 })
 export class FavoritesPage implements OnInit {
-  favorites = [];
-  constructor() {}
+  favorites: any = [];
+  constructor(private favoritesService: FavoritesService) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.favoritesService.favorites$.subscribe((favorites) => {
+      this.favorites = favorites;
+    });
+  }
 }
