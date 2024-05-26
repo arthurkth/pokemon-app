@@ -5,17 +5,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button [routerLink]="['/']" class="arrow-back__button ion-no-padding"
-    ><ion-icon name="arrow-undo-circle-outline"></ion-icon>
-  </ion-button>
-  @if(pokemonInfo && pokemonInfo.sprites && pokemonInfo.sprites.other) {
+  @if(pokemonInfo && pokemonInfo.sprites) {
   <ion-row class="ion-justify-content-center content-wrapper">
     <ion-col size="12" size-md="8" size-lg="6" class="pokemon-card__stats">
       <ion-card>
-        <img
-          alt="pokemonInfo.name"
-          [src]=" pokemonInfo.sprites.other['official-artwork'].front_default"
-        />
+        <img alt="pokemonInfo.name" [src]=" pokemonInfo.sprites" />
         <ion-card-header>
           <ion-card-title class="ion-text-capitalize ion-text-center"
             >{{ pokemonInfo.name}}</ion-card-title
@@ -32,10 +26,10 @@
           </ion-button>
           <ion-title>Stats:</ion-title>
           <ion-list>
-            @for (item of pokemonInfo.stats; track pokemonInfo.id) {
+            @for (stat of pokemonInfo.stats; track pokemonInfo.id) {
             <ion-item class="ion-text-center">
-              <ion-label>{{ item.stat.name}} : </ion-label>
-              <ion-label>{{ item.base_stat}} </ion-label>
+              <ion-label>{{ stat.stat.name}} : </ion-label>
+              <ion-label>{{ stat.base_stat}} </ion-label>
             </ion-item>
             }
           </ion-list>

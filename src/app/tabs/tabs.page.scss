@@ -1,0 +1,15 @@
+@media (min-width: 768px) {
+  ion-tab-bar {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 20%;
+    display: flex;
+    border: 0;
+  }
+
+  ion-tabs {
+    display: flex;
+  }
+}

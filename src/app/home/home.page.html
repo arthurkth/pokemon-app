@@ -17,25 +17,13 @@
       <ion-col size="12" size-sm="6" size-lg="4" size-xl="3">
         <ion-card>
           <ion-card-content>
-            <ion-thumbnail [routerLink]="['/details', pokemon.item.name]">
-              <img alt="pokemon.item.name Avatar" [src]="pokemon.image" />
+            <ion-thumbnail [routerLink]="['/details', pokemon.pokemon.name]">
+              <img alt="pokemon.name Avatar" [src]="pokemon.image" />
             </ion-thumbnail>
             <ion-item lines="none">
               <ion-card-title class="ion-text-capitalize">
-                {{ pokemon.item.name }}
+                {{ pokemon.pokemon.name }}
               </ion-card-title>
-              <ion-button
-                color="none"
-                slot="end"
-                size="large"
-                class="ion-no-padding"
-              >
-                <ion-icon
-                  name="heart"
-                  aria-hidden="true"
-                  color="danger"
-                ></ion-icon>
-              </ion-button>
             </ion-item>
           </ion-card-content>
         </ion-card>

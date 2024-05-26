@@ -6,6 +6,7 @@ import { addIcons } from 'ionicons';
 import { heart } from 'ionicons/icons';
 import { arrowUndoCircleOutline } from 'ionicons/icons';
 import { RouterModule } from '@angular/router';
+import { PokemonDetails } from '../types';
 import {
   IonContent,
   IonHeader,
@@ -54,7 +55,7 @@ import { PokeapiService } from '../services/pokeapi.service';
   ],
 })
 export class DetailsPage {
-  pokemonInfo: any = {};
+  pokemonInfo: PokemonDetails | null = null;
 
   @Input()
   set name(pokemonName: string) {
