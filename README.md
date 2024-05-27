@@ -1,6 +1,6 @@
 # Pokemon-App
 
-![Pikachu](https://i.gifer.com/Td9n.gif)
+![Pikachu](./src/assets/pikachu.gif)
 
 ## Visão Geral
 
