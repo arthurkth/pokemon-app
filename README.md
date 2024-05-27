@@ -1,8 +1,6 @@
 # Pokemon-App
 
-<div style="text-align: center;">
-  <img src="https://i.gifer.com/Td9n.gif" alt="Descrição da imagem" style="display: block; margin: 0 auto;">
-</div>
+![Pikachu](https://i.gifer.com/Td9n.gif)
 
 ## Visão Geral
 
