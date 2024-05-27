@@ -62,6 +62,11 @@ export class FavoritesPage implements OnInit {
   loadFavorites(): void {
     const favorites = this.favoritesService.getFavoritesPokemons();
     this.favorites = favorites.slice(0, this.currentPage * this.limit);
+    if (this.favorites.length < this.limit) {
+      this.isLoading = true;
+      return;
+    }
+    this.isLoading = false;
   }
 
   loadMore() {

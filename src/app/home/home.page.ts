@@ -54,7 +54,7 @@ export class HomePage {
       });
 
     this.pokeapiService.getPokemonsCount().subscribe((count) => {
-      if (this.pokemons.length >= count) {
+      if (1280 >= count) {
         this.isLoading = true;
       }
     });
