@@ -1,0 +1,30 @@
+<ion-grid>
+  <ion-row class="content-wrapper ion-justify-content-center">
+    @if (pokemons.length > 0) { @for (pokemon of pokemons; track pokemon.id) {
+    <ion-col size="12" size-sm="6" size-lg="4" size-xl="3">
+      <ion-card>
+        <ion-card-content>
+          <ion-thumbnail [routerLink]="['/details', pokemon.name]">
+            <img alt="pokemon.name Avatar" [src]="pokemon.image" />
+          </ion-thumbnail>
+          <ion-item lines="none">
+            <ion-card-title class="ion-text-capitalize">
+              {{ pokemon.name }}
+            </ion-card-title>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    } @if (!isLoading && pokemons.length > 0 ) {
+    <ion-col size="12" class="ion-text-center">
+      <ion-button shape="round" color="danger" (click)="loadMore()">
+        Load More
+      </ion-button>
+    </ion-col>
+    } } @else{
+    <ion-title class="ion-text-center ion-margin">
+      Não há resultados a serem exibidos.
+    </ion-title>
+    }
+  </ion-row>
+</ion-grid>

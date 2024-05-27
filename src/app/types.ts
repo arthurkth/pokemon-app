@@ -1,10 +1,6 @@
 export interface Pokemon {
   id: number;
   image: string;
-  pokemon: PokemonBaseInfo;
-}
-
-export interface PokemonBaseInfo {
   name: string;
   url: string;
 }
@@ -13,7 +9,7 @@ export interface PokemonDetails {
   abilities: Ability[];
   types: Type[];
   stats: Stat[];
-  sprites: string;
+  image: string;
   height: number;
   weight: number;
   id: number;

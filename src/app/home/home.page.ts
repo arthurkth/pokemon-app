@@ -1,30 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { addIcons } from 'ionicons';
 import { heart } from 'ionicons/icons';
+
+import { PokeapiService } from '../services/pokeapi.service';
+import { RouterModule } from '@angular/router';
+import { Pokemon } from '../types';
+import { PokemonCardComponent } from '../components/pokemon-card/pokemon-card.component';
 import {
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonAvatar,
-  IonButton,
-  IonThumbnail,
-  IonCard,
-  IonCardHeader,
-  IonCardContent,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonRow,
-  IonGrid,
-  IonCol,
-  IonIcon,
 } from '@ionic/angular/standalone';
-import { PokeapiService } from '../services/pokeapi.service';
-import { RouterModule } from '@angular/router';
-import { Pokemon, PokemonBaseInfo } from '../types';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -32,25 +19,11 @@ import { Pokemon, PokemonBaseInfo } from '../types';
   standalone: true,
   imports: [
     RouterModule,
+    PokemonCardComponent,
     IonHeader,
     IonToolbar,
     IonTitle,
     IonContent,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonAvatar,
-    IonButton,
-    IonThumbnail,
-    IonCard,
-    IonCardHeader,
-    IonCardContent,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonRow,
-    IonGrid,
-    IonCol,
-    IonIcon,
   ],
 })
 export class HomePage {
@@ -59,6 +32,7 @@ export class HomePage {
   offset: number = 0;
   limit: number = 12;
   isLoading: boolean = false;
+  totalPokemonCount: number = 0;
 
   constructor(private pokeapiService: PokeapiService) {
     addIcons({ heart });
@@ -69,14 +43,21 @@ export class HomePage {
     this.pokeapiService
       .getPokemonList(this.limit, this.offset)
       .subscribe((data) => {
-        const newPokemons = data.map((pokemon: PokemonBaseInfo): Pokemon => {
+        const newPokemons = data.map((pokemon: any): Pokemon => {
           const parts = pokemon.url.split('/');
           const id = parseInt(parts[parts.length - 2], 10);
           const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-          return { id, image, pokemon };
+
+          return { id, image, name: pokemon.name, url: pokemon.url };
         });
         this.pokemons = [...this.pokemons, ...newPokemons];
       });
+
+    this.pokeapiService.getPokemonsCount().subscribe((count) => {
+      if (this.pokemons.length >= count) {
+        this.isLoading = true;
+      }
+    });
   }
 
   loadMore() {

@@ -5,11 +5,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  @if(pokemonInfo && pokemonInfo.sprites) {
+  @if(pokemonInfo && pokemonInfo.image) {
   <ion-row class="ion-justify-content-center content-wrapper">
     <ion-col size="12" size-md="8" size-lg="6" class="pokemon-card__stats">
       <ion-card>
-        <img alt="pokemonInfo.name" [src]=" pokemonInfo.sprites" />
+        <img alt="pokemonInfo.name" [src]=" pokemonInfo.image" />
         <ion-card-header>
           <ion-card-title class="ion-text-capitalize ion-text-center"
             >{{ pokemonInfo.name}}</ion-card-title
